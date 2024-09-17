@@ -1,0 +1,38 @@
+{
+    "extends": [
+        // ESLint推奨設定のチェック
+        "eslint:recommended",
+        // 型を必要としないプラグインの推奨ルールの有効化
+        "plugin:@typescript-eslint/recommended",
+        // formatterをprettierにしているので、そのルールを適用
+        "prettier"
+    ],
+    // 使用するプラグイン
+    "plugins": ["@typescript-eslint"],
+    // eslintがグローバル変数などをエラーとして検出しないようにする設定
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    // TypeScriptのパーサー
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    // 無視するファイル
+    "ignorePatterns": ["**/*.js"],
+    // 追加ルール
+    "rules": {
+        // 関数やクラスの返却型を記載しないことに関する警告
+        // returnの値から勝手に予測してくれればいいのでoff
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        // non null assertionを使用した際の警告
+        // するときはかならず都合があると思うのでoff
+        "@typescript-eslint/no-non-null-assertion": "off",
+        // 空のコンストラクタに対して警告を出さない
+        "@typescript-eslint/no-empty-function": "off",
+        // 不要な変数はあってもOK
+        "@typescript-eslint/no-unused-vars": "off"
+    }
+}

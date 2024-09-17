@@ -1,0 +1,27 @@
+type Query {
+    sampleQuery(name: String!): SampleQueryOutput!
+}
+
+type Mutation {
+    sampleMutation(roomId: ID!, message: String!): SampleMutationOutput!
+}
+
+type Subscription {
+    sampleSubscription(roomId: String!): SampleMutationOutput @aws_subscribe(mutations: ["sampleMutation"])
+}
+
+type SampleQueryOutput {
+    id: ID!
+    name: String!
+    value: Int
+}
+
+type SampleMutationOutput {
+    roomId: ID!
+    chat: Chat!
+}
+
+type Chat {
+    id: ID!
+    message: String!
+}
